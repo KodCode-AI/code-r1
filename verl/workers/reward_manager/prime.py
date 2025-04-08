@@ -48,7 +48,7 @@ async def parallel_compute_score_async(evaluation_func,
                                        references,
                                        tasks,
                                        extra_info=None,
-                                       num_processes=64):
+                                       num_processes=48):
     scores = []
     with ProcessPoolExecutor(max_workers=num_processes) as executor:
         if extra_info is None:
@@ -112,7 +112,7 @@ class PrimeRewardManager:
                                              ground_truth,
                                              data_sources,
                                              extra_info=extra_info,
-                                             num_processes=64))
+                                             num_processes=48))
         except asyncio.TimeoutError as e:
             print('Global timeout in reward computing! Setting all as 0.')
             scores = [0. for _ in range(len(sequences_str))]
@@ -142,8 +142,8 @@ class PrimeRewardManager:
         sequences_str = self.tokenizer.batch_decode(response_ids, skip_special_tokens=True)
         data_sources = data.non_tensor_batch['data_source']
 
-        num_processes = max(cpu_count(), 1)
-        # num_processes = 48
+        # num_processes = max(cpu_count()/2, 1)
+        num_processes = 48
         print(f"Start to compute rewards for {len(sequences_str)} samples over {num_processes} processes.")
 
         scores = self.verify(data)

@@ -59,7 +59,6 @@ def extract_code_from_string(solution_str):
     code_blocks = CODE_PATTERN.findall(solution_str)
     return '\n'.join(code_blocks).strip()
 
-
 def _compute_score(solution_str, ground_truth, extra_info, format_reward=0.1, answer_reward=1.):
     reward_log = []
 
@@ -128,7 +127,6 @@ def _compute_score(solution_str, ground_truth, extra_info, format_reward=0.1, an
     reward_log.append("+" * 16 + "Test Execution Passed! (Output)" + "+" * 16)
     reward_log.append(output)
     return format_reward + answer_reward, "\n".join(reward_log)
-
 
 def compute_score(solution_str, ground_truth, extra_info, format_reward=0.1, answer_reward=1., debug=False):
     if isinstance(extra_info, np.ndarray):
