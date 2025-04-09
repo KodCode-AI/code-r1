@@ -38,21 +38,6 @@ cd ..
 
 ```
 
-### Datasets (Code-R1-12K)
-
-The current version has 12K RL samples (prompt + tests) at [🤗 ganler/code-r1-12k](https://huggingface.co/datasets/ganler/code-r1-12k):
-
-* [2K LeetCode data](https://github.com/newfacade/LeetCodeDataset) where the tests are generally reliable
-* 10K verified data filtered from 26K [TACO](https://huggingface.co/datasets/BAAI/TACO) data.
-
-In general, it's suggesgted to test data & sandbox on every dataset & environment before training code RL.
-Directly using noisy data and mismatched envornments can lead to reward false positives, confusing the model.
-These noise could come from (i) wrong tests, (ii) unsolvable prompts (e.g., images tags), and (iii) execution environment mismatch.
-
-```bash
-python examples/data_preprocess/coder1.py
-```
-
 ### Datasets (KodCode-Light)
 
 The current version has 10K RL samples (prompt + tests) at [🤗 KodCode/KodCode-Light-RL-10K](https://huggingface.co/datasets/KodCode/KodCode-Light-RL-10K):
